@@ -34,13 +34,14 @@ if(color==="red"){
     <div className="App">
       <h1> {data.appTitle}</h1>
 
-      <div style={{  width: "100px",height: "100px", display: "flex", flexDirection: "column",
+      <div style={{  width: "150px",height: "500px", display: "flex", flexDirection: "column",
       justifyContent: "space-around",alignItems: "center",margin: '30px',backgroundColor: data?.colors?.container?.na }}>
         {data?.colors?.bulbs?.na.map((item, index) => {
           console.log("index", index);
           return (
-            <div style={{color:color(item), opacity: timer === index ? 1 : 0.4 }}>
-              {item}
+            <div style={{borderRadius:"50%", width:"105px", height:"130px",margin: "10px", 
+            backgroundColor:color(item), opacity: timer === index ? 1 : 0.4 }}>
+              {/* {item} */}
             </div>
           );
         })}
