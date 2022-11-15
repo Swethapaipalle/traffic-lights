@@ -1,0 +1,17 @@
+{
+  "appTitle": "Traffic Lights",
+  "colors": {
+    "container": {
+      "na": "black",
+      "sa": "black"
+    },
+    "bulbs": {
+      "na": ["red", "green", "yellow"],
+      "sa": ["red", "green", "yellow"]
+    },
+    "intervals": {
+      "na": 1000,
+      "sa": 1000
+    }
+  }
+}

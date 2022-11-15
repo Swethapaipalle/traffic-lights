@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
-function App() {
+// USE ME TO FETCH DATA
+const FETCH_URL = "./data.json";
+
+export default function App() {
+  const [data, setData] = useState({});
+  const [timer, setTimer] = useState(0);
+  useEffect(() => {
+    const fetchData = fetch(FETCH_URL).then((response) => response.json());
+
+    const result = Promise.all([fetchData]).then((res) => {
+      console.log("res", res);
+      setData(res[0]);
+    });
+  }, []);
+  useEffect(() => {
+    const timerOut = setTimeout(() => {
+      setTimer((timer + 1) % 3);
+    }, data?.colors?.intervals?.na);
+    return () => {
+      clearTimeout(timerOut);
+    };
+  });
+const color=(color)=>{
+if(color==="red"){
+  return "red"
+}else if(color==="green"){
+  return "green"
+}else return "yellow"
+
+}
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> {data.appTitle}</h1>
+
+      <div style={{  width: "100px",height: "100px", display: "flex", flexDirection: "column",
+      justifyContent: "space-around",alignItems: "center",margin: '30px',backgroundColor: data?.colors?.container?.na }}>
+        {data?.colors?.bulbs?.na.map((item, index) => {
+          console.log("index", index);
+          return (
+            <div style={{color:color(item), opacity: timer === index ? 1 : 0.4 }}>
+              {item}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
-
-export default App;
